@@ -50,6 +50,78 @@
     .info-card { background-color: #17142b; border: 1px solid #262147; border-radius: 16px; padding: 30px; }
     .contact-form { display: flex; flex-direction: column; gap: 15px; max-width: 450px; margin: 0 auto; }
     .input-box { background-color: #100e1f; border: 1px solid #262147; color: white; padding: 12px 15px; border-radius: 8px; outline: none; }
+    /* MOBILE RESPONSIVE STYLES (Applies only when screen width is 768px or less) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .portfolio-card {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+
+  /* Stack Navbar Vertically */
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    font-size: 0.85rem;
+  }
+
+  .talk-btn {
+    width: 100%;
+    padding: 8px 16px;
+  }
+
+  /* Adjust Hero Layout */
+  .hero {
+    flex-direction: column-reverse; /* Shows photo on top */
+    gap: 25px;
+    text-align: center;
+  }
+
+  .title-heading {
+    font-size: 1.8rem;
+  }
+
+  .subtext {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .btn-group {
+    justify-content: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  /* Resize Profile Photo Circle */
+  .photo-ring {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hero-photo {
+    flex: none;
+  }
+
+  /* Projects Grid Single Column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
