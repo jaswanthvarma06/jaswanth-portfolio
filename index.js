@@ -72,7 +72,7 @@ function App() {
           <div className="hero-photo">
             <div className="photo-ring">
               <img 
-                src="/profile.jpg" 
+                src="/profile.png" 
                 alt="Jaswanth Varma" 
                 className="profile-img"
                 onError={(e) => {
