@@ -69,8 +69,8 @@ function App() {
             </div>
             <div className="social-links">
               <a href="https://github.com/jaswanthvarma06" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-github"></i></a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-              <a href="mailto:contact@gmail.com" className="social-icon"><i className="far fa-envelope"></i></a>
+              <a href="https://www.linkedin.com/in/jaswanth-varma/" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
+              <a href="mailto:jashuvarma2310@gmail.com" className="social-icon"><i className="far fa-envelope"></i></a>
             </div>
           </div>
 
