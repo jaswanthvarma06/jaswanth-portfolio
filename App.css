@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0b0a12;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.portfolio-card {
+  width: 100%;
+  max-width: 1000px;
+  background-color: #121020;
+  border: 1px solid #1f1b3a;
+  border-radius: 24px;
+  padding: 35px 45px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.logo-dot {
+  color: #a855f7;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.talk-btn {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1 1 450px;
+}
+
+.greeting {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.title-heading {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.purple-text {
+  color: #a855f7;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.subtext {
+  color: #94a3b8;
+  line-height: 1.6;
+  font-size: 0.92rem;
+  margin-bottom: 30px;
+  max-width: 460px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.action-btn {
+  background-color: #1a1730;
+  color: #ffffff;
+  border: 1px solid #332d5c;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.action-btn.purple-border {
+  border-color: #a855f7;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #2a254d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* PROFILE PHOTO */
+.hero-photo {
+  flex: 0 0 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-ring {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  border: 2px dashed #a855f7;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #1a1730;
+}
+
+/* PROJECTS GRID */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background-color: #17142b;
+  border: 1px solid #262147;
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.proj-title {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.proj-desc {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tag {
+  background-color: #241f42;
+  color: #c084fc;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.proj-link {
+  background-color: #a855f7;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  display: block;
+}
+
+/* PAGES & FORM */
+.page-title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.info-card {
+  background-color: #17142b;
+  border: 1px solid #262147;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.input-box {
+  background-color: #100e1f;
+  border: 1px solid #262147;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  outline: none;
+}
