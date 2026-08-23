@@ -11,6 +11,12 @@ function App() {
       tags: ['React', 'Node.js', 'MongoDB', 'Express']
     },
     {
+  title: 'Handwritten Digit Recognition',
+  description: 'A deep learning model trained on the MNIST dataset using CNNs to recognize and classify handwritten digits in real time.',
+  link: 'https://handwritten-digit-recognition-zei5.onrender.com',
+  tags: ['Python', 'TensorFlow/Keras', 'CNN', 'OpenCV']
+},
+    {
       title: 'DeepTrace - AI Voice Detection',
       description: 'Real-time deepfake audio detection architecture designed for financial verification safety.',
       link: 'https://github.com',
@@ -59,19 +65,19 @@ function App() {
             </p>
             <div className="btn-group">
               <button className="action-btn" onClick={() => setPage('projects')}>PROJECTS &lt;/&gt;</button>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="action-btn purple-border">GITHUB ↗</a>
+              <a href="https://github.com/jaswanthvarma06" target="_blank" rel="noreferrer" className="action-btn purple-border">GITHUB ↗</a>
             </div>
             <div className="social-links">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-github"></i></a>
+              <a href="https://github.com/jaswanthvarma06" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-github"></i></a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-              <a href="mailto:contact@example.com" className="social-icon"><i className="far fa-envelope"></i></a>
+              <a href="mailto:contact@gmail.com" className="social-icon"><i className="far fa-envelope"></i></a>
             </div>
           </div>
 
           <div className="hero-photo">
             <div className="photo-ring">
               <img 
-                src="profile.jpg" 
+                src="profile.png" 
                 alt="Jaswanth Varma" 
                 className="profile-img"
                 onError={(e) => {
