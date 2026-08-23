@@ -1,298 +1,462 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaswanth Varma | AI & ML Developer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #0d0614 0%, #170b28 50%, #0a0410 100%);
-      --card-bg: rgba(22, 16, 35, 0.75);
-      --card-border: rgba(168, 85, 247, 0.2);
-      --accent-purple: #a855f7;
-      --accent-glow: #8b5cf6;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
+import React, { useState } from 'react';
+
+function App() {
+  const [activePage, setActivePage] = useState('home');
+
+  const projects = [
+    {
+      title: 'Student Event Management (SEMS)',
+      description: 'A full-stack campus management platform for event organization, registration tracking, and user role administration.',
+      link: 'https://sems-frontend-chi.vercel.app',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express']
+    },
+    {
+      title: 'DeepTrace - AI Voice Detection',
+      description: 'Real-time deepfake audio detection architecture designed for financial verification safety during hackathons.',
+      link: 'https://github.com',
+      tags: ['Python', 'AI/ML', 'Audio Processing']
+    },
+    {
+      title: 'ISEKAI Guild RPG',
+      description: 'An interactive 3D RPG game project developed in Godot with custom asset pipelines and mechanics.',
+      link: 'https://github.com',
+      tags: ['Godot Engine', '3D Modeling', 'Game Dev']
+    },
+    {
+      title: 'JV Creations Visual Studio',
+      description: 'A visual media and editing portfolio showcasing VFX pipeline integrations, Blender rendering, and motion graphics.',
+      link: 'https://github.com',
+      tags: ['Blender', 'VFX', 'Video Editing']
     }
+  ];
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-
-    body {
-      background: var(--bg-gradient);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
-
-    /* Main Container Card */
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(139, 92, 246, 0.15);
-      padding: 2.5rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #fff;
-    }
-    .logo span { color: var(--accent-purple); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--text-main);
-    }
-
-    .btn-talk {
-      background: linear-gradient(135deg, #a855f7, #7c3aed);
-      color: #fff;
-      padding: 0.6rem 1.4rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
-      transition: 0.3s;
-    }
-    .btn-talk:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
-    }
-
-    /* Hero Layout */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .hero-content {
-      padding-right: 1rem;
-    }
-
-    .greeting {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .role-title {
-      font-size: 3.2rem;
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .role-title span {
-      color: var(--accent-purple);
-      text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-    }
-
-    .bio {
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      max-width: 520px;
-    }
-
-    /* Action Buttons */
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .btn-primary {
-      background: #1e1b2e;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #fff;
-      padding: 0.8rem 1.6rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: 0.3s;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-purple);
-      border-color: var(--accent-purple);
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid var(--accent-purple);
-      color: var(--accent-purple);
-      padding: 0.8rem 1.6rem;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(168, 85, 247, 0.1);
-    }
-
-    /* Social Icons */
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .social-icon:hover {
-      color: #fff;
-      border-color: var(--accent-purple);
-      background: rgba(168, 85, 247, 0.2);
-    }
-
-    /* Profile Graphic Area */
-    .hero-image {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .avatar-glow {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(0,0,0,0) 70%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px dashed rgba(168, 85, 247, 0.4);
-    }
-
-    .avatar-placeholder {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: #170f26;
-      border: 2px solid var(--accent-purple);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      color: var(--accent-purple);
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-    }
-
-    @media (max-width: 868px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-content { padding-right: 0; }
-      .bio { margin: 0 auto 2rem auto; }
-      .cta-group { justify-content: center; }
-      .social-links { justify-content: center; }
-      .nav-links { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <!-- Navigation Bar -->
-    <nav>
-      <div class="logo">JASWANTH<span>.</span></div>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="mailto:your-email@gmail.com" class="btn-talk">Let's Talk</a>
-    </nav>
-
-    <!-- Main Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <p class="greeting">Hi, I'm Jaswanth Varma!</p>
-        <h1 class="role-title">AI & ML <span>DEVELOPER</span></h1>
-        <p class="bio">
-          Specializing in Artificial Intelligence and Machine Learning. Passionate about engineering smart applications, computer vision models, and full-stack web solutions.
-        </p>
-
-        <div class="cta-group">
-          <a href="https://handwritten-digit-recognition-zei5.onrender.com" target="_blank" class="btn-primary">
-            PROJECTS <i class="fa-solid fa-code"></i>
-          </a>
-          <a href="https://github.com/jaswanthvarma06" target="_blank" class="btn-secondary">
-            GITHUB <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
+  return (
+    <div style={styles.container}>
+      {/* NAVBAR */}
+      <nav style={styles.navbar}>
+        <h2 style={styles.logo} onClick={() => setActivePage('home')}>
+          JASWANTH<span style={{ color: '#a855f7' }}>.</span>
+        </h2>
+        <div style={styles.navLinks}>
+          <button 
+            style={activePage === 'home' ? styles.activeNavLink : styles.navLink} 
+            onClick={() => setActivePage('home')}
+          >
+            Home
+          </button>
+          <button 
+            style={activePage === 'about' ? styles.activeNavLink : styles.navLink} 
+            onClick={() => setActivePage('about')}
+          >
+            About
+          </button>
+          <button 
+            style={activePage === 'projects' ? styles.activeNavLink : styles.navLink} 
+            onClick={() => setActivePage('projects')}
+          >
+            Projects
+          </button>
+          <button 
+            style={activePage === 'contact' ? styles.activeNavLink : styles.navLink} 
+            onClick={() => setActivePage('contact')}
+          >
+            Contact
+          </button>
         </div>
+        <button style={styles.talkBtn} onClick={() => setActivePage('contact')}>
+          Let's Talk
+        </button>
+      </nav>
 
-        <div class="social-links">
-          <a href="https://github.com/jaswanthvarma06" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-      </div>
+      {/* MAIN CONTENT AREA */}
+      <div style={styles.contentArea}>
+        
+        {/* PAGE 1: HOME */}
+        {activePage === 'home' && (
+          <div style={styles.heroSection}>
+            <div style={styles.heroTextContainer}>
+              <p style={styles.greeting}>Hi, I'm Jaswanth Varma!</p>
+              <h1 style={styles.titleHeading}>
+                AI & ML <span style={styles.highlightText}>STUDENT</span>
+              </h1>
+              <p style={styles.subtext}>
+                Specializing in Artificial Intelligence and Machine Learning. Passionate about engineering smart applications, computer vision models, and full-stack web solutions.
+              </p>
+              <div style={styles.buttonGroup}>
+                <button style={styles.primaryBtn} onClick={() => setActivePage('projects')}>
+                  PROJECTS &lt;/&gt;
+                </button>
+                <a 
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  style={styles.secondaryBtn}
+                >
+                  GITHUB ↗
+                </a>
+              </div>
+            </div>
 
-      <!-- Avatar / Image Section -->
-      <div class="hero-image">
-        <div class="avatar-glow">
-          <div class="avatar-placeholder">
-            <i class="fa-solid fa-laptop-code"></i>
+            <div style={styles.photoContainer}>
+              <div style={styles.photoRing}>
+                <img 
+                  src="/profile.png" 
+                  alt="Jaswanth Varma" 
+                  style={styles.profileImage}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.style.display = 'none';
+                    e.target.parentNode.innerHTML = '<div style="color:#a855f7; font-weight:bold; font-size:1.2rem;">[ PHOTO ]</div>';
+                  }}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        )}
 
-</body>
-</html>
+        {/* PAGE 2: PROJECTS */}
+        {activePage === 'projects' && (
+          <div style={styles.pageSection}>
+            <h2 style={styles.sectionTitle}>
+              My <span style={styles.highlightText}>Projects</span>
+            </h2>
+            <div style={styles.projectsGrid}>
+              {projects.map((proj, idx) => (
+                <div key={idx} style={styles.projectCard}>
+                  <h3 style={styles.projectCardTitle}>{proj.title}</h3>
+                  <p style={styles.projectCardDesc}>{proj.description}</p>
+                  <div style={styles.tagContainer}>
+                    {proj.tags.map((tag, i) => (
+                      <span key={i} style={styles.tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <a 
+                    href={proj.link} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    style={styles.projectLinkBtn}
+                  >
+                    View Project ↗
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* PAGE 3: ABOUT */}
+        {activePage === 'about' && (
+          <div style={styles.pageSection}>
+            <h2 style={styles.sectionTitle}>
+              About <span style={styles.highlightText}>Me</span>
+            </h2>
+            <div style={styles.aboutCard}>
+              <p style={styles.aboutText}>
+                I am a dedicated Artificial Intelligence & Machine Learning student focused on building intelligent algorithms, backend engines, and full-stack web applications.
+              </p>
+              <div style={styles.skillsGrid}>
+                <div style={styles.skillBox}>
+                  <h4 style={styles.skillHeader}>Languages & Web</h4>
+                  <p style={styles.skillBody}>Python, JavaScript, React, Node.js, Express, HTML/CSS</p>
+                </div>
+                <div style={styles.skillBox}>
+                  <h4 style={styles.skillHeader}>AI & Database</h4>
+                  <p style={styles.skillBody}>Machine Learning, Deep Learning, MongoDB, SQL, Flask</p>
+                </div>
+                <div style={styles.skillBox}>
+                  <h4 style={styles.skillHeader}>Creative & Systems</h4>
+                  <p style={styles.skillBody}>Godot Engine, Blender, Video Compositing, Git & GitHub</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PAGE 4: CONTACT */}
+        {activePage === 'contact' && (
+          <div style={styles.pageSection}>
+            <h2 style={styles.sectionTitle}>
+              Get In <span style={styles.highlightText}>Touch</span>
+            </h2>
+            <div style={styles.contactCard}>
+              <p style={{ color: '#94a3b8', marginBottom: '25px', textAlign: 'center' }}>
+                Feel free to reach out for collaborations, project inquiries, or academic connection.
+              </p>
+              <form onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }} style={styles.form}>
+                <input type="text" placeholder="Your Name" style={styles.inputField} required />
+                <input type="email" placeholder="Your Email" style={styles.inputField} required />
+                <textarea placeholder="Your Message" style={{ ...styles.inputField, height: '120px' }} required />
+                <button type="submit" style={styles.primaryBtn}>
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+// STYLES matching the exact dark theme
+const styles = {
+  container: {
+    backgroundColor: '#0a0a12',
+    minHeight: '100vh',
+    color: '#ffffff',
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
+  },
+  navbar: {
+    width: '100%',
+    maxWidth: '1100px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '20px 30px',
+    backgroundColor: '#121124',
+    borderRadius: '20px',
+    border: '1px solid #1e1b3a',
+  },
+  logo: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    margin: 0,
+    cursor: 'pointer',
+    letterSpacing: '1px',
+  },
+  navLinks: {
+    display: 'flex',
+    gap: '20px',
+  },
+  navLink: {
+    background: 'none',
+    border: 'none',
+    color: '#94a3b8',
+    cursor: 'pointer',
+    fontSize: '0.95rem',
+    transition: '0.2s',
+  },
+  activeNavLink: {
+    background: 'none',
+    border: 'none',
+    color: '#ffffff',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    fontSize: '0.95rem',
+    borderBottom: '2px solid #a855f7',
+  },
+  talkBtn: {
+    background: 'linear-gradient(135deg, #a855f7, #7c3aed)',
+    color: 'white',
+    border: 'none',
+    padding: '10px 22px',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    boxShadow: '0 0 15px rgba(168, 85, 247, 0.4)',
+  },
+  contentArea: {
+    width: '100%',
+    maxWidth: '1100px',
+    marginTop: '30px',
+    backgroundColor: '#121124',
+    borderRadius: '24px',
+    border: '1px solid #1e1b3a',
+    padding: '50px 40px',
+    boxSizing: 'border-box',
+    minHeight: '520px',
+  },
+  heroSection: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '40px',
+  },
+  heroTextContainer: {
+    flex: '1 1 500px',
+  },
+  greeting: {
+    color: '#94a3b8',
+    fontSize: '1.1rem',
+    marginBottom: '10px',
+  },
+  titleHeading: {
+    fontSize: '2.8rem',
+    fontWeight: '800',
+    margin: '10px 0 20px 0',
+    letterSpacing: '1px',
+  },
+  highlightText: {
+    color: '#a855f7',
+    textShadow: '0 0 20px rgba(168, 85, 247, 0.6)',
+  },
+  subtext: {
+    color: '#94a3b8',
+    lineHeight: '1.6',
+    maxWidth: '480px',
+    marginBottom: '30px',
+  },
+  buttonGroup: {
+    display: 'flex',
+    gap: '15px',
+  },
+  primaryBtn: {
+    backgroundColor: '#1e1b3a',
+    color: '#ffffff',
+    border: '1px solid #3b3563',
+    padding: '12px 24px',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+  },
+  secondaryBtn: {
+    border: '1px solid #a855f7',
+    color: '#ffffff',
+    padding: '12px 24px',
+    borderRadius: '10px',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    display: 'inline-block',
+  },
+  photoContainer: {
+    flex: '0 0 280px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  photoRing: {
+    width: '240px',
+    height: '240px',
+    borderRadius: '50%',
+    border: '2px dashed #a855f7',
+    padding: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: '0 0 30px rgba(168, 85, 247, 0.2)',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: '50%',
+    objectFit: 'cover',
+  },
+  pageSection: {
+    width: '100%',
+  },
+  sectionTitle: {
+    fontSize: '2rem',
+    marginBottom: '30px',
+    textAlign: 'center',
+  },
+  projectsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gap: '20px',
+  },
+  projectCard: {
+    backgroundColor: '#1a1833',
+    border: '1px solid #2d2854',
+    borderRadius: '16px',
+    padding: '25px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  projectCardTitle: {
+    margin: '0 0 10px 0',
+    color: '#ffffff',
+    fontSize: '1.25rem',
+  },
+  projectCardDesc: {
+    color: '#94a3b8',
+    fontSize: '0.9rem',
+    lineHeight: '1.5',
+    marginBottom: '20px',
+  },
+  tagContainer: {
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    marginBottom: '20px',
+  },
+  tag: {
+    backgroundColor: '#27234a',
+    color: '#c084fc',
+    fontSize: '0.75rem',
+    padding: '4px 10px',
+    borderRadius: '6px',
+  },
+  projectLinkBtn: {
+    backgroundColor: '#a855f7',
+    color: '#ffffff',
+    textAlign: 'center',
+    textDecoration: 'none',
+    padding: '10px',
+    borderRadius: '8px',
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
+  },
+  aboutCard: {
+    backgroundColor: '#1a1833',
+    padding: '30px',
+    borderRadius: '16px',
+    border: '1px solid #2d2854',
+  },
+  aboutText: {
+    color: '#cbd5e1',
+    lineHeight: '1.7',
+    marginBottom: '30px',
+    fontSize: '1.05rem',
+  },
+  skillsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '20px',
+  },
+  skillBox: {
+    backgroundColor: '#121124',
+    padding: '20px',
+    borderRadius: '12px',
+    border: '1px solid #27234a',
+  },
+  skillHeader: {
+    color: '#a855f7',
+    margin: '0 0 10px 0',
+  },
+  skillBody: {
+    color: '#94a3b8',
+    fontSize: '0.85rem',
+    margin: 0,
+  },
+  contactCard: {
+    maxWidth: '500px',
+    margin: '0 auto',
+    backgroundColor: '#1a1833',
+    padding: '35px',
+    borderRadius: '16px',
+    border: '1px solid #2d2854',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+  },
+  inputField: {
+    backgroundColor: '#121124',
+    border: '1px solid #2d2854',
+    color: '#ffffff',
+    padding: '12px 15px',
+    borderRadius: '8px',
+    fontSize: '0.9rem',
+    outline: 'none',
+  },
+};
+
+export default App;
