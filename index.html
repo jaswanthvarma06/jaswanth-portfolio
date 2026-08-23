@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaswanth Varma | Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #0f172a; color: #f8fafc; padding: 2rem; max-width: 1000px; margin: 0 auto; }
+    header { margin-bottom: 3rem; border-bottom: 1px solid #334155; padding-bottom: 1.5rem; }
+    h1 { font-size: 2.5rem; color: #38bdf8; }
+    p.subtitle { color: #94a3b8; font-size: 1.1rem; margin-top: 0.5rem; }
+    
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .card { background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155; display: flex; flex-direction: column; justify-content: space-between; }
+    .card h3 { font-size: 1.4rem; color: #f1f5f9; margin-bottom: 0.5rem; }
+    .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }
+    
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tag { background: #0284c7; color: #fff; font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 6px; font-weight: 600; }
+    
+    .links { display: flex; gap: 1rem; }
+    .btn { text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-align: center; flex: 1; }
+    .btn-primary { background: #38bdf8; color: #0f172a; }
+    .btn-secondary { background: #334155; color: #f8fafc; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Jaswanth Varma</h1>
+    <p class="subtitle">AI & Machine Learning Developer | Portfolio Showcase</p>
+  </header>
+
+  <main>
+    <h2 style="margin-bottom: 1.5rem;">Featured Projects</h2>
+    
+    <div class="projects-grid">
+      
+      <!-- Project 1: Digit Recognition -->
+      <div class="card">
+        <div>
+          <h3>Handwritten Digit Recognition</h3>
+          <p>Deep Learning web app built with Python, Flask, and TensorFlow/Keras that classifies handwritten numerical digits from image inputs in real-time with dual-contrast checks.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Keras</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="links">
+          <a href="https://handwritten-digit-recognition-zei5.onrender.com" target="_blank" class="btn btn-primary">Live App</a>
+          <a href="https://github.com/jaswanthvarma06/handwritten-digit-recognition" target="_blank" class="btn btn-secondary">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Add more project cards here using the same structure -->
+
+    </div>
+  </main>
+
+</body>
+</html>
