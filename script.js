@@ -2,58 +2,139 @@ const { useState } = React;
 
 function App() {
   const [page, setPage] = useState('home');
+  const [activeMediaProject, setActiveMediaProject] = useState(null);
 
   const projects = [
     {
+      id: 'sems',
       title: 'Student Event Management (SEMS)',
       description: 'A full-stack campus management platform for event organization, registration tracking, and user role administration.',
       link: 'https://sems-frontend-chi.vercel.app',
-      tags: ['React', 'Node.js', 'MongoDB', 'Express']
+      tags: ['React', 'Node.js', 'MongoDB', 'Express'],
+      hasShowcase: false
     },
     {
-  title: 'Handwritten Digit Recognition',
-  description: 'A deep learning model trained on the MNIST dataset using CNNs to recognize and classify handwritten digits in real time.',
-  link: 'https://handwritten-digit-recognition-zei5.onrender.com',
-  tags: ['Python', 'TensorFlow/Keras', 'CNN', 'OpenCV']
-},
+      id: 'digits',
+      title: 'Handwritten Digit Recognition',
+      description: 'A deep learning model trained on the MNIST dataset using CNNs to recognize and classify handwritten digits in real time.',
+      link: 'https://handwritten-digit-recognition-zei5.onrender.com',
+      tags: ['Python', 'TensorFlow/Keras', 'CNN', 'OpenCV'],
+      hasShowcase: false
+    },
     {
+      id: 'fuel',
+      title: 'On-Demand Fuel Delivery',
+      description: 'An interactive web application styled like top food delivery apps, allowing users to request fuel on-demand with location pinning and tracking.',
+      link: '#',
+      tags: ['React', 'Node.js', 'UI/UX', 'Geolocation'],
+      hasShowcase: true
+    },
+    {
+      id: 'rpg',
+      title: 'ISEKAI Guild RPG',
+      description: 'An interactive 3D RPG game project developed in Godot engine with custom asset pipelines and mechanics.',
+      link: '#',
+      tags: ['Godot Engine', '3D Modeling', 'Game Dev'],
+      hasShowcase: true
+    },
+    {
+      id: 'deeptrace',
       title: 'DeepTrace - AI Voice Detection',
       description: 'Real-time deepfake audio detection architecture designed for financial verification safety.',
-      link: 'https://github.com',
-      tags: ['Python', 'AI/ML', 'Audio Processing']
+      link: 'https://github.com/jaswanthvarma06',
+      tags: ['Python', 'AI/ML', 'Audio Processing'],
+      hasShowcase: false
     },
     {
-      title: 'ISEKAI Guild RPG',
-      description: 'An interactive 3D RPG game project developed in Godot engine with custom asset pipelines.',
-      link: 'https://github.com',
-      tags: ['Godot Engine', '3D Modeling', 'Game Dev']
-    },
-    {
+      id: 'visuals',
       title: 'JV Creations Visual Studio',
       description: 'Visual media and editing portfolio showcasing VFX pipeline integrations, Blender rendering, and motion graphics.',
-      link: 'https://github.com',
-      tags: ['Blender', 'VFX', 'Video Editing']
+      link: 'https://github.com/jaswanthvarma06',
+      tags: ['Blender', 'VFX', 'Video Editing'],
+      hasShowcase: false
     }
   ];
+
+  const mediaData = {
+    rpg: {
+      title: 'ISEKAI Guild RPG Showcase',
+      description: 'Explore gameplay previews, environment builds, and 3D character design assets.',
+      images: [
+        { src: 'rpg-1.jpg', alt: '3D Gameplay Environment' },
+        { src: 'rpg-2.jpg', alt: 'Character & Boss Rigging' },
+        { src: 'rpg-3.jpg', alt: 'Inventory & Quest System' }
+      ],
+      video: 'rpg-gameplay.mp4'
+    },
+    fuel: {
+      title: 'On-Demand Fuel Delivery App',
+      description: 'A seamless UI workflow showcasing map geolocation, fuel selection, and order delivery confirmation.',
+      images: [
+        { src: 'fuel-1.jpg', alt: 'App Home & Order Dashboard' },
+        { src: 'fuel-2.jpg', alt: 'Pin Location Selection Map' },
+        { src: 'fuel-3.jpg', alt: 'Live Delivery Status Page' }
+      ],
+      video: null
+    }
+  };
 
   return (
     <div className="portfolio-card">
       {/* NAVBAR */}
       <nav className="navbar">
-        <div className="logo" onClick={() => setPage('home')}>
+        <div className="logo" onClick={() => { setPage('home'); setActiveMediaProject(null); }}>
           JASWANTH<span className="logo-dot">.</span>
         </div>
         <div className="nav-links">
-          <button className={`nav-btn ${page === 'home' ? 'active' : ''}`} onClick={() => setPage('home')}>Home</button>
-          <button className={`nav-btn ${page === 'about' ? 'active' : ''}`} onClick={() => setPage('about')}>About</button>
-          <button className={`nav-btn ${page === 'projects' ? 'active' : ''}`} onClick={() => setPage('projects')}>Projects</button>
-          <button className={`nav-btn ${page === 'contact' ? 'active' : ''}`} onClick={() => setPage('contact')}>Contact</button>
+          <button className={`nav-btn ${page === 'home' && !activeMediaProject ? 'active' : ''}`} onClick={() => { setPage('home'); setActiveMediaProject(null); }}>Home</button>
+          <button className={`nav-btn ${page === 'about' ? 'active' : ''}`} onClick={() => { setPage('about'); setActiveMediaProject(null); }}>About</button>
+          <button className={`nav-btn ${page === 'projects' || activeMediaProject ? 'active' : ''}`} onClick={() => { setPage('projects'); setActiveMediaProject(null); }}>Projects</button>
+          <button className={`nav-btn ${page === 'contact' ? 'active' : ''}`} onClick={() => { setPage('contact'); setActiveMediaProject(null); }}>Contact</button>
         </div>
-        <button className="talk-btn" onClick={() => setPage('contact')}>Let's Talk</button>
+        <button className="talk-btn" onClick={() => { setPage('contact'); setActiveMediaProject(null); }}>Let's Talk</button>
       </nav>
 
+      {/* MEDIA SHOWCASE PAGE OVERLAY */}
+      {activeMediaProject && mediaData[activeMediaProject] && (
+        <div className="showcase-container">
+          <button className="back-btn" onClick={() => setActiveMediaProject(null)}>← Back to Projects</button>
+          <h2 className="page-title">{mediaData[activeMediaProject].title}</h2>
+          <p className="showcase-desc">{mediaData[activeMediaProject].description}</p>
+
+          {mediaData[activeMediaProject].video && (
+            <div className="media-box">
+              <h3 className="section-subtitle">Video Preview</h3>
+              <video controls className="showcase-video">
+                <source src={mediaData[activeMediaProject].video} type="video/mp4" />
+                Your browser does not support HTML video.
+              </video>
+            </div>
+          )}
+
+          <div className="media-box">
+            <h3 className="section-subtitle">Screenshots & UI Previews</h3>
+            <div className="gallery-grid">
+              {mediaData[activeMediaProject].images.map((img, index) => (
+                <div key={index} className="gallery-card">
+                  <img 
+                    src={img.src} 
+                    alt={img.alt} 
+                    className="gallery-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentNode.innerHTML = `<div class="img-placeholder"><span>[ Image: ${img.alt} ]</span></div>`;
+                    }}
+                  />
+                  <p className="img-caption">{img.alt}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* PAGE: HOME */}
-      {page === 'home' && (
+      {page === 'home' && !activeMediaProject && (
         <div className="hero">
           <div className="hero-content">
             <p className="greeting">Hi, I'm Jaswanth Varma!</p>
@@ -91,12 +172,12 @@ function App() {
       )}
 
       {/* PAGE: PROJECTS */}
-      {page === 'projects' && (
+      {page === 'projects' && !activeMediaProject && (
         <div>
           <h2 className="page-title">My <span className="purple-text">Projects</span></h2>
           <div className="projects-grid">
-            {projects.map((proj, idx) => (
-              <div key={idx} className="project-card">
+            {projects.map((proj) => (
+              <div key={proj.id} className="project-card">
                 <div>
                   <h3 className="proj-title">{proj.title}</h3>
                   <p className="proj-desc">{proj.description}</p>
@@ -107,9 +188,16 @@ function App() {
                       <span key={i} className="tag">{tag}</span>
                     ))}
                   </div>
-                  <a href={proj.link} target="_blank" rel="noreferrer" className="proj-link">
-                    View Project ↗
-                  </a>
+
+                  {proj.hasShowcase ? (
+                    <button className="proj-link showcase-btn" onClick={() => setActiveMediaProject(proj.id)}>
+                      View Media & Screenshots 🎬
+                    </button>
+                  ) : (
+                    <a href={proj.link} target="_blank" rel="noreferrer" className="proj-link">
+                      View Project ↗
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -118,7 +206,7 @@ function App() {
       )}
 
       {/* PAGE: ABOUT */}
-      {page === 'about' && (
+      {page === 'about' && !activeMediaProject && (
         <div>
           <h2 className="page-title">About <span className="purple-text">Me</span></h2>
           <div className="info-card">
@@ -140,7 +228,7 @@ function App() {
       )}
 
       {/* PAGE: CONTACT */}
-      {page === 'contact' && (
+      {page === 'contact' && !activeMediaProject && (
         <div>
           <h2 className="page-title">Get In <span className="purple-text">Touch</span></h2>
           <div className="info-card">
